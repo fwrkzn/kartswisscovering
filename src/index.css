@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon: #81e91f;
+  --color-neon-mid: #86EF21;
+  --color-neon-light: #DDFD01;
+  --color-dark: #0A0A0A;
+  --color-surface: #111111;
+  --color-border: #222222;
+  
+  --font-display: "Anton", sans-serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-dark text-white font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display uppercase tracking-tight;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+@layer utilities {
+  .text-outline {
+    -webkit-text-stroke: 0.4px white;
+    color: transparent;
+  }
+  
+  .backdrop-blur-custom {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Elements that animate on scroll start invisible via CSS.
+     Framer Motion overrides this with inline styles when animating. */
+  .reveal {
+    opacity: 0;
+  }
+
+  .bg-neon-gradient {
+    background: linear-gradient(180deg, var(--color-neon-light) 0%, var(--color-neon-mid) 50%, var(--color-neon) 100%);
+  }
+
+  .text-neon-gradient {
+    background: linear-gradient(180deg, var(--color-neon-light) 0%, var(--color-neon-mid) 50%, var(--color-neon) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
