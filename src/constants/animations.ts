@@ -83,18 +83,22 @@ export const TRANSITION_VARIANTS: Record<string, Variants> = {
     highlighted: { opacity: 0.8, transition: { duration: 0.55, ease: smoothEase } },
   },
   page: {
-    pageInitial: { opacity: 1 },
+    pageInitial: { opacity: 0, filter: "blur(8px)", y: 14 },
     pageAnimate: {
       opacity: 1,
+      filter: "blur(0px)",
+      y: 0,
       transition: {
-        duration: 0,
+        duration: 0.42,
+        ease: smoothEase,
       },
     },
     exit: {
       opacity: 0,
-      y: -20,
+      filter: "blur(6px)",
+      y: -12,
       transition: {
-        duration: 0.29,
+        duration: 0.24,
         ease: smoothEase,
       },
     },
