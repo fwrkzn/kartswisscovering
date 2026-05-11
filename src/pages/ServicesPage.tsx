@@ -24,7 +24,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
           {question}
         </span>
         <ChevronDown
-          className={`w-6 h-6 text-neutral-500 group-hover:text-neon transition-all duration-500 flex-shrink-0 ${
+          className={`w-6 h-6 text-neutral-500 group-hover:text-neon transition-[color,transform] duration-500 flex-shrink-0 ${
             isOpen ? "rotate-180 text-neon" : ""
           }`}
         />
@@ -35,7 +35,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
           height: isOpen ? "auto" : 0,
           opacity: isOpen ? 1 : 0,
         }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.34, ease: [0.16, 1, 0.3, 1] }}
         className="overflow-hidden"
       >
         <p className="text-neutral-400 font-sans leading-relaxed pb-8 max-w-2xl">
@@ -95,8 +95,8 @@ export function ServicesPage() {
   return (
     <motion.div
       variants={TRANSITION_VARIANTS.page}
-      initial="initial"
-      animate="animate"
+      initial="pageInitial"
+      animate="pageAnimate"
       exit="exit"
       className="bg-dark"
     >
@@ -141,7 +141,7 @@ export function ServicesPage() {
       <Services />
 
       {/* Deep Dive Section | Qualité des Films */}
-      <section className="py-32 px-6 border-t border-border bg-surface/20">
+      <section className="py-32 px-6 border-t border-border bg-dark">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <motion.div
@@ -164,7 +164,7 @@ export function ServicesPage() {
                   { t: "DURABILITÉ 10 ANS", d: "Garantie officielle contre le jaunissement et le décollement." },
                 ].map((item) => (
                   <motion.div variants={TRANSITION_VARIANTS.item} key={item.t} className="flex gap-6 group">
-                    <div className="h-px w-12 bg-neon mt-4 group-hover:w-20 transition-all duration-500"></div>
+                    <div className="h-px w-12 bg-neon mt-4 group-hover:w-20 transition-[width] duration-500"></div>
                     <div>
                       <h4 className="text-white font-display font-bold text-xl mb-2">{item.t}</h4>
                       <p className="text-neutral-500 font-sans">{item.d}</p>
@@ -232,10 +232,10 @@ export function ServicesPage() {
                 <motion.div
                   key={detail.title}
                   variants={TRANSITION_VARIANTS.card}
-                  className="group p-10 border border-border bg-surface/20 hover:bg-surface/40 transition-all duration-700"
+                  className="group p-10 border border-border bg-dark hover:bg-black transition-colors duration-500"
                 >
-                  <div className="h-16 w-16 rounded-full border border-neutral-800 flex items-center justify-center mb-8 group-hover:border-neon group-hover:bg-neon/10 transition-all duration-500">
-                    <Icon className="w-7 h-7 text-neutral-600 group-hover:text-neon transition-all duration-500" />
+                  <div className="h-16 w-16 rounded-full border border-neutral-800 flex items-center justify-center mb-8 group-hover:border-neon group-hover:bg-neon/10 transition-colors duration-500">
+                    <Icon className="w-7 h-7 text-neutral-600 group-hover:text-neon transition-colors duration-500" />
                   </div>
                   <h3 className="text-xl font-display font-bold text-white mb-4">{detail.title}</h3>
                   <p className="text-neutral-400 font-sans leading-relaxed">{detail.text}</p>
@@ -247,7 +247,7 @@ export function ServicesPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-32 px-6 border-t border-border bg-surface/10">
+      <section className="py-32 px-6 border-t border-border bg-dark">
         <div className="container mx-auto">
           <motion.div
             variants={TRANSITION_VARIANTS.container}

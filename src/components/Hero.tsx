@@ -23,7 +23,7 @@ export function Hero() {
           variants={TRANSITION_VARIANTS.container}
           initial="hidden"
           animate="visible"
-          className="max-w-3xl"
+          className="reveal max-w-3xl"
         >
           <motion.h1 
             variants={TRANSITION_VARIANTS.blurText}

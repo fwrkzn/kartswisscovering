@@ -73,14 +73,14 @@ export function Services() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              className="group relative flex flex-col border border-border bg-surface/30 p-8 hover:bg-surface transition-all duration-700"
+              className="reveal group relative flex flex-col border border-border bg-dark p-8 hover:bg-black transition-colors duration-500"
             >
               <Link to="/services" className="absolute inset-0 z-10" />
               
               <div className="flex justify-between items-start mb-8">
                 <span className="text-4xl font-display font-bold text-neon">{item.id}</span>
-                <div className="h-12 w-12 rounded-full border border-neutral-700 flex items-center justify-center group-hover:border-neon group-hover:bg-neon transition-all duration-500">
-                  <ArrowUpRight className="w-6 h-6 text-neutral-500 group-hover:text-black transition-all duration-500" />
+                <div className="h-12 w-12 rounded-full border border-neutral-700 flex items-center justify-center group-hover:border-neon group-hover:bg-neon transition-colors duration-500">
+                  <ArrowUpRight className="w-6 h-6 text-neutral-500 group-hover:text-black transition-colors duration-500" />
                 </div>
               </div>
 
@@ -88,7 +88,7 @@ export function Services() {
                 <img 
                   src={item.image} 
                   alt={item.title} 
-                  className={`w-full h-full object-cover group-hover:scale-110 transition-all duration-700 ${
+                  className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ${
                     item.id === "03" ? "object-[center_85%]" : "object-center"
                   }`}
                 />

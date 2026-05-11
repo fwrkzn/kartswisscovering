@@ -88,8 +88,10 @@ export function Transformations() {
                 loading="lazy"
                 className={`absolute inset-0 w-full h-full transition duration-700 transform-gpu will-change-transform ${
                   project.id === "02"
-                    ? "object-cover scale-[1.25] group-hover:scale-[1.29]"
-                    : "object-cover group-hover:scale-110"
+                    ? "object-cover object-bottom scale-[1.25] group-hover:scale-[1.29]"
+                    : project.id === "03"
+                      ? "object-cover object-bottom group-hover:scale-110"
+                      : "object-cover object-right group-hover:scale-110"
                 }`}
               />
 

@@ -52,8 +52,8 @@ export function PresentationPage() {
   return (
     <motion.div
       variants={TRANSITION_VARIANTS.page}
-      initial="initial"
-      animate="animate"
+      initial="pageInitial"
+      animate="pageAnimate"
       exit="exit"
       className="bg-dark"
     >
@@ -94,7 +94,7 @@ export function PresentationPage() {
       </section>
 
       {/* À Propos | Founder Story */}
-      <section className="py-32 px-6 border-y border-border bg-surface/10">
+      <section className="py-32 px-6 border-y border-border bg-dark">
         <div className="container mx-auto">
           <motion.div
             variants={TRANSITION_VARIANTS.container}
@@ -163,7 +163,7 @@ export function PresentationPage() {
             viewport={{ once: true }}
             className="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-border"
           >
-            <motion.div variants={TRANSITION_VARIANTS.item} className="bg-dark p-12 md:p-16">
+            <motion.div variants={TRANSITION_VARIANTS.card} className="bg-dark p-12 md:p-16">
               <span className="text-neon font-display font-bold text-5xl opacity-100 block mb-6">NOTRE MISSION</span>
               <p className="text-xl text-white font-sans font-light leading-relaxed mb-6">
                 Aider les entreprises à donner vie à leur identité visuelle et maximiser leur visibilité grâce à des solutions sur mesure.
@@ -173,7 +173,7 @@ export function PresentationPage() {
               </p>
             </motion.div>
 
-            <motion.div variants={TRANSITION_VARIANTS.item} className="bg-dark p-12 md:p-16">
+            <motion.div variants={TRANSITION_VARIANTS.card} className="bg-dark p-12 md:p-16">
               <span className="text-neon font-display font-bold text-5xl opacity-100 block mb-6">NOTRE OBJECTIF</span>
               <p className="text-xl text-white font-sans font-light leading-relaxed mb-6">
                 Optimiser la communication de votre entreprise en mettant en mouvement votre image de marque.
@@ -187,7 +187,7 @@ export function PresentationPage() {
       </section>
 
       {/* Timeline / Parcours */}
-      <section className="py-32 px-6 bg-surface/10 border-b border-border">
+      <section className="py-32 px-6 bg-dark border-b border-border">
         <div className="container mx-auto">
           <motion.div
             variants={TRANSITION_VARIANTS.container}
@@ -222,13 +222,13 @@ export function PresentationPage() {
                   key={milestone.year}
                   initial="dimmed"
                   whileInView="highlighted"
-                  viewport={{ once: false, margin: "-40% 0px -40% 0px" }}
-                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true, margin: "-40% 0px -40% 0px" }}
+                  transition={{ duration: 0.36, ease: [0.16, 1, 0.3, 1] }}
                   variants={{
                     dimmed: { opacity: 0.2, scale: 0.98 },
                     highlighted: { opacity: 1, scale: 1 }
                   }}
-                  className={`relative flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-16 ${
+                  className={`reveal relative flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-16 ${
                     index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                   }`}
                 >
@@ -239,7 +239,7 @@ export function PresentationPage() {
                         dimmed: { color: "#ffffff", filter: "blur(0px)" },
                         highlighted: { color: "#81e91f", filter: "drop-shadow(0 0 8px rgba(129,233,31,0.4))" }
                       }}
-                      className="text-2xl md:text-3xl font-display font-bold mb-3 uppercase tracking-tight transition-all duration-500"
+                      className="text-2xl md:text-3xl font-display font-bold mb-3 uppercase tracking-tight transition-colors duration-500"
                     >
                       {milestone.title}
                     </motion.h3>
@@ -253,7 +253,7 @@ export function PresentationPage() {
                         dimmed: { scale: 0.8, backgroundColor: "#222", boxShadow: "none" },
                         highlighted: { scale: 1.3, backgroundColor: "#81e91f", boxShadow: "0 0 40px rgba(129,233,31,0.8)" }
                       }}
-                      className="w-5 h-5 rounded-full transition-all duration-500" 
+                      className="w-5 h-5 rounded-full transition-colors duration-500" 
                     />
                   </div>
 
@@ -264,7 +264,7 @@ export function PresentationPage() {
                         dimmed: { color: "rgba(129, 233, 31, 0.05)" },
                         highlighted: { color: "rgba(129, 233, 31, 1)" }
                       }}
-                      className="text-7xl md:text-9xl font-display font-bold transition-all duration-500"
+                      className="text-7xl md:text-9xl font-display font-bold transition-colors duration-500"
                     >
                       {milestone.year}
                     </motion.span>
@@ -307,10 +307,10 @@ export function PresentationPage() {
             className="reveal grid grid-cols-1 md:grid-cols-2 gap-12"
           >
             <motion.div
-              variants={TRANSITION_VARIANTS.item}
-              className="group relative overflow-hidden aspect-[4/3] bg-surface border border-border"
+              variants={TRANSITION_VARIANTS.card}
+              className="group relative overflow-hidden aspect-[4/3] bg-dark border border-border"
             >
-              <img src={covering1} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 will-change-transform" alt="Detail" />
+              <img src={covering1} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 will-change-transform" alt="Detail" />
               <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-80"></div>
               <div className="absolute bottom-10 left-10">
                 <span className="text-neon font-display font-bold text-4xl block">SÉCURITÉ</span>
@@ -319,10 +319,10 @@ export function PresentationPage() {
             </motion.div>
 
             <motion.div
-              variants={TRANSITION_VARIANTS.item}
-              className="group relative overflow-hidden aspect-[4/3] bg-surface border border-border mt-12 md:mt-24"
+              variants={TRANSITION_VARIANTS.card}
+              className="group relative overflow-hidden aspect-[4/3] bg-dark border border-border mt-12 md:mt-24"
             >
-              <img src={covering2} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 will-change-transform" alt="Porsche" />
+              <img src={covering2} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 will-change-transform" alt="Porsche" />
               <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-80"></div>
               <div className="absolute bottom-10 left-10">
                 <span className="text-neon font-display font-bold text-4xl block">ESTHÉTIQUE</span>
@@ -334,7 +334,7 @@ export function PresentationPage() {
       </section>
 
       {/* Values Section | Expanded */}
-      <section className="py-32 px-6 border-t border-border bg-surface/10">
+      <section className="py-32 px-6 border-t border-border bg-dark">
         <div className="container mx-auto">
           <motion.div
             variants={TRANSITION_VARIANTS.container}
@@ -366,10 +366,10 @@ export function PresentationPage() {
                 <motion.div
                   key={val.title}
                   variants={TRANSITION_VARIANTS.card}
-                  className="group p-10 border border-border bg-surface/20 hover:bg-surface/40 transition-all duration-700"
+                  className="group p-10 border border-border bg-dark hover:bg-black transition-colors duration-500"
                 >
-                  <div className="h-14 w-14 rounded-full border border-neutral-800 flex items-center justify-center mb-8 group-hover:border-neon group-hover:bg-neon/10 transition-all duration-500">
-                    <Icon className="w-6 h-6 text-neutral-600 group-hover:text-neon transition-all duration-500" />
+                  <div className="h-14 w-14 rounded-full border border-neutral-800 flex items-center justify-center mb-8 group-hover:border-neon group-hover:bg-neon/10 transition-colors duration-500">
+                    <Icon className="w-6 h-6 text-neutral-600 group-hover:text-neon transition-colors duration-500" />
                   </div>
                   <h3 className="text-xl font-display font-bold text-white mb-4 group-hover:text-neon transition-colors duration-500">{val.title}</h3>
                   <p className="text-neutral-400 font-sans leading-relaxed">{val.text}</p>

@@ -86,22 +86,22 @@ export function ServicesPreview() {
                 key={service.id}
                 variants={TRANSITION_VARIANTS.card}
                 initial="hidden"
-                whileInView="highlighted"
-                viewport={{ once: false, margin: "-20% 0px -20% 0px" }}
-                className="group relative bg-dark p-10 md:p-12 hover:bg-surface transition-all duration-700"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                className="reveal group relative bg-dark p-10 md:p-12 hover:bg-black transition-colors duration-500"
               >
                 <div className="flex items-start justify-between mb-8">
                   <motion.span 
                     variants={{
                       hidden: { opacity: 0.2 },
-                      highlighted: { opacity: 1 }
+                      visible: { opacity: 1 }
                     }}
-                    className="text-6xl md:text-7xl font-display font-bold text-neon transition-all duration-700 leading-none"
+                    className="text-6xl md:text-7xl font-display font-bold text-neon transition-colors duration-500 leading-none"
                   >
                     {service.id}
                   </motion.span>
-                  <div className="h-14 w-14 rounded-full border border-neutral-800 flex items-center justify-center group-hover:border-neon group-hover:bg-neon/10 transition-all duration-500">
-                    <Icon className="w-6 h-6 text-neutral-600 group-hover:text-neon transition-all duration-500" />
+                  <div className="h-14 w-14 rounded-full border border-neutral-800 flex items-center justify-center group-hover:border-neon group-hover:bg-neon/10 transition-colors duration-500">
+                    <Icon className="w-6 h-6 text-neutral-600 group-hover:text-neon transition-colors duration-500" />
                   </div>
                 </div>
 
@@ -126,7 +126,7 @@ export function ServicesPreview() {
                     hidden: { color: "#525252" },
                     highlighted: { color: "#525252" }
                   }}
-                  className="flex items-center gap-2 transition-all duration-500"
+                  className="flex items-center gap-2 transition-colors duration-500"
                 >
                   <span className="text-xs font-sans font-bold uppercase tracking-widest">
                     En savoir plus

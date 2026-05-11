@@ -15,11 +15,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu when route changes
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location]);
-
   // Prevent scroll when menu is open
   useEffect(() => {
     if (isOpen) {
@@ -43,7 +38,7 @@ export function Navbar() {
       opacity: 0,
       y: "-100%",
       transition: {
-        duration: 0.6,
+        duration: 0.42,
         ease: smoothEase,
         when: "afterChildren" as const,
       },
@@ -52,17 +47,17 @@ export function Navbar() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.45,
         ease: smoothEase,
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
+        staggerChildren: 0.055,
+        delayChildren: 0.08,
       },
     },
   };
 
   const linkVariants = {
-    closed: { opacity: 0, y: 20 },
-    open: { opacity: 1, y: 0, transition: { duration: 0.5, ease: smoothEase } },
+    closed: { opacity: 0, y: 16 },
+    open: { opacity: 1, y: 0, transition: { duration: 0.36, ease: smoothEase } },
   };
 
   return (
@@ -70,8 +65,8 @@ export function Navbar() {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: smoothEase }}
-        className={`fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-6 py-4 border-b transition-all duration-500 ${
+        transition={{ duration: 0.52, ease: smoothEase }}
+        className={`fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-6 py-4 border-b transition-[background-color,border-color,padding] duration-500 ${
           isScrolled || isOpen ? "bg-dark/95 backdrop-blur-xl border-border py-3" : "bg-transparent border-transparent"
         }`}
       >
@@ -118,25 +113,26 @@ export function Navbar() {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed inset-0 z-[55] bg-dark flex flex-col justify-center px-8"
+            className="fixed inset-0 z-[55] bg-dark flex flex-col justify-start overflow-y-auto px-8 pt-32 pb-12"
           >
 
-            <div className="flex flex-col gap-8 relative z-10">
+            <div className="flex flex-col gap-6 sm:gap-8 relative z-10 mt-auto">
               {navLinks.map((link, index) => (
                 <motion.div key={link.name} variants={linkVariants}>
                   <Link
                     to={link.path}
+                    onClick={() => setIsOpen(false)}
                     className={`group flex items-center justify-between py-2 border-b border-white/5`}
                   >
-                    <div className="flex items-center gap-6">
-                      <span className="text-neon font-display font-bold text-xl opacity-40">0{index + 1}</span>
-                      <span className={`text-5xl md:text-7xl font-display font-bold uppercase transition-colors ${
+                    <div className="flex items-center gap-4 sm:gap-6">
+                      <span className="text-neon font-display font-bold text-lg sm:text-xl opacity-40">0{index + 1}</span>
+                      <span className={`text-4xl sm:text-5xl md:text-7xl font-display font-bold uppercase transition-colors ${
                         location.pathname === link.path ? "text-neon" : "text-white group-hover:text-neon"
                       }`}>
                         {link.name}
                       </span>
                     </div>
-                    <ArrowRight className={`w-8 h-8 transition-transform duration-500 group-hover:translate-x-2 ${
+                    <ArrowRight className={`w-6 h-6 sm:w-8 sm:h-8 transition-transform duration-500 group-hover:translate-x-2 ${
                       location.pathname === link.path ? "text-neon" : "text-white/20"
                     }`} />
                   </Link>
@@ -146,15 +142,15 @@ export function Navbar() {
 
             <motion.div 
               variants={linkVariants}
-              className="mt-16 relative z-10"
+              className="mt-10 sm:mt-16 relative z-10 mb-auto"
             >
-               <Link to="/contact">
-                  <button className="w-full bg-neon py-6 text-black font-sans font-black text-2xl uppercase tracking-tight shadow-[0_0_30px_rgba(134,239,33,0.1)]">
+               <Link to="/contact" onClick={() => setIsOpen(false)}>
+                  <button className="w-full bg-neon py-5 sm:py-6 text-black font-sans font-black text-xl sm:text-2xl uppercase tracking-tight shadow-[0_0_30px_rgba(134,239,33,0.1)]">
                     DEVIS GRATUIT
                   </button>
                </Link>
                
-               <div className="flex justify-between items-center mt-12 text-neutral-500 font-sans text-[10px] font-bold tracking-[0.3em] uppercase">
+               <div className="flex justify-between items-center mt-10 sm:mt-12 text-neutral-500 font-sans text-[10px] font-bold tracking-[0.3em] uppercase">
                  <span>YVERDON-LES-BAINS</span>
                  <span>SWISS QUALITY +</span>
                </div>

@@ -8,8 +8,8 @@ export function ContactPage() {
   return (
     <motion.div
       variants={TRANSITION_VARIANTS.page}
-      initial="initial"
-      animate="animate"
+      initial="pageInitial"
+      animate="pageAnimate"
       exit="exit"
       className="bg-dark"
     >
@@ -95,7 +95,7 @@ export function ContactPage() {
                 ))}
               </div>
 
-               <div className="p-10 bg-surface/30 border-l-4 border-neon">
+               <div className="p-10 bg-dark border-l-4 border-neon">
                 <h3 className="text-white font-display font-bold text-2xl mb-4 uppercase tracking-tight">HORAIRES</h3>
                 <p className="text-neon font-sans font-black text-xl uppercase tracking-widest">
                   UNIQUEMENT SUR RENDEZ-VOUS
@@ -109,11 +109,11 @@ export function ContactPage() {
             {/* Right: Form */}
             <div className="lg:col-span-7">
               <motion.div 
-                variants={TRANSITION_VARIANTS.item}
+                variants={TRANSITION_VARIANTS.card}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="reveal bg-surface/50 p-12 border border-border relative overflow-hidden"
+                className="reveal bg-dark p-12 border border-border relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 p-4 opacity-5">
                    <Send className="w-64 h-64 -rotate-12" />
@@ -156,7 +156,7 @@ export function ContactPage() {
                         accept="image/png, image/jpeg, image/jpg, image/heic, image/webp"
                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                       />
-                      <div className="w-full bg-surface/30 border border-dashed border-neutral-800 p-6 text-center group-hover:border-neon transition-colors duration-500">
+                      <div className="w-full bg-dark border border-dashed border-neutral-800 p-6 text-center group-hover:border-neon transition-colors duration-500">
                         <span className="text-neutral-500 font-sans text-xs group-hover:text-neon transition-colors uppercase tracking-[0.2em] font-bold">
                           Cliquez ou glissez vos images (PNG, JPG, HEIC, WEBP)
                         </span>

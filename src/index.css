@@ -37,9 +37,7 @@
     -webkit-backdrop-filter: blur(12px);
   }
 
-  /* Elements that animate on scroll start invisible via CSS.
-     Framer Motion overrides this with inline styles when animating. */
-  .reveal {
+  html:not(.motion-ready) .reveal {
     opacity: 0;
   }
 

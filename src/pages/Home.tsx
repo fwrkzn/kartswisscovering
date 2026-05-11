@@ -13,8 +13,8 @@ export function Home() {
   return (
     <motion.div
       variants={TRANSITION_VARIANTS.page}
-      initial="initial"
-      animate="animate"
+      initial="pageInitial"
+      animate="pageAnimate"
       exit="exit"
     >
       <Helmet>

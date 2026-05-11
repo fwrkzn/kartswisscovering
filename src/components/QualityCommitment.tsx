@@ -31,7 +31,7 @@ const commitments = [
 
 export function QualityCommitment() {
   return (
-    <section className="py-32 px-6 bg-surface/10 border-y border-border overflow-hidden">
+    <section className="py-32 px-6 bg-dark border-y border-border overflow-hidden">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Left | Statement */}
@@ -83,7 +83,7 @@ export function QualityCommitment() {
 
               <motion.div 
                 variants={TRANSITION_VARIANTS.item}
-                className="grid grid-cols-2 sm:grid-cols-4 gap-8 items-center opacity-40 hover:opacity-100 transition-opacity duration-700"
+                className="grid grid-cols-4 gap-4 sm:gap-8 items-center justify-items-center opacity-50 hover:opacity-100 transition-opacity duration-700"
               >
                 {[
                   { img: mmmLogo, alt: "3M" },
@@ -95,7 +95,7 @@ export function QualityCommitment() {
                     key={logo.alt} 
                     src={logo.img} 
                     alt={logo.alt} 
-                    className="h-8 md:h-10 w-auto object-contain brightness-200 hover:brightness-100 transition-all duration-500"
+                    className="h-5 sm:h-7 md:h-10 max-w-16 sm:max-w-24 w-auto object-contain brightness-200 hover:brightness-100 transition-all duration-500"
                   />
                 ))}
               </motion.div>
@@ -116,19 +116,16 @@ export function QualityCommitment() {
                 <motion.div
                   key={item.title}
                   variants={TRANSITION_VARIANTS.card}
-                  initial="hidden"
-                  whileInView="highlighted"
-                  viewport={{ once: false, margin: "-20% 0px -20% 0px" }}
-                  className="group bg-black p-8 hover:bg-surface transition-all duration-700"
+                  className="group bg-black p-8 hover:bg-black transition-colors duration-500"
                 >
                   <motion.div 
                     variants={{
                       hidden: { borderColor: "#262626", backgroundColor: "transparent" },
-                      highlighted: { borderColor: "#81e91f", backgroundColor: "rgba(129, 233, 31, 0.1)" }
+                      visible: { borderColor: "#81e91f", backgroundColor: "rgba(129, 233, 31, 0.1)" }
                     }}
-                    className="h-12 w-12 rounded-full border flex items-center justify-center mb-6 transition-all duration-500"
+                    className="h-12 w-12 rounded-full border flex items-center justify-center mb-6 transition-colors duration-500"
                   >
-                    <Icon className="w-5 h-5 text-white group-hover:text-neon transition-all duration-500" />
+                    <Icon className="w-5 h-5 text-white group-hover:text-neon transition-colors duration-500" />
                   </motion.div>
                   <motion.h3 
                     variants={TRANSITION_VARIANTS.item}
