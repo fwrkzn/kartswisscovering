@@ -36,14 +36,16 @@ export function Navbar() {
     { name: "CONTACT", path: "/contact" },
   ];
 
+  const smoothEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
   const menuVariants = {
     closed: {
       opacity: 0,
       y: "-100%",
       transition: {
         duration: 0.6,
-        ease: [0.16, 1, 0.3, 1],
-        when: "afterChildren",
+        ease: smoothEase,
+        when: "afterChildren" as const,
       },
     },
     open: {
@@ -51,7 +53,7 @@ export function Navbar() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.16, 1, 0.3, 1],
+        ease: smoothEase,
         staggerChildren: 0.1,
         delayChildren: 0.3,
       },
@@ -60,7 +62,7 @@ export function Navbar() {
 
   const linkVariants = {
     closed: { opacity: 0, y: 20 },
-    open: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+    open: { opacity: 1, y: 0, transition: { duration: 0.5, ease: smoothEase } },
   };
 
   return (
@@ -68,7 +70,7 @@ export function Navbar() {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.8, ease: smoothEase }}
         className={`fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-6 py-4 border-b transition-all duration-500 ${
           isScrolled || isOpen ? "bg-dark/95 backdrop-blur-xl border-border py-3" : "bg-transparent border-transparent"
         }`}

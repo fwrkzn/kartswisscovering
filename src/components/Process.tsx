@@ -2,33 +2,6 @@ import { motion } from "framer-motion";
 import { TRANSITION_VARIANTS } from "../constants/animations";
 import { MessageSquare, Layers, Droplets, Sparkles } from "lucide-react";
 
-const processSteps = [
-  {
-    icon: MessageSquare,
-    title: "ÉCHANGE & DEVIS",
-    text: "Nous discutons de votre projet et vous recevez un devis détaillé sous 48h.",
-    size: "large"
-  },
-  {
-    icon: Layers,
-    title: "CHOIX DES FILMS",
-    text: "Sélection des teintes, finitions et textures parmi nos gammes premium.",
-    size: "small"
-  },
-  {
-    icon: Droplets,
-    title: "PRÉPARATION",
-    text: "Nettoyage décontaminant et démontage si nécessaire pour une pose parfaite.",
-    size: "small"
-  },
-  {
-    icon: Sparkles,
-    title: "POSE ARTISANALE",
-    text: "Application minutieuse des films dans notre atelier contrôlé.",
-    size: "large"
-  },
-];
-
 export function Process() {
   return (
     <section className="py-32 px-6 bg-surface overflow-hidden">
@@ -133,4 +106,3 @@ export function Process() {
     </section>
   );
 }
-
