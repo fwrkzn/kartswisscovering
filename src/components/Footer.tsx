@@ -5,6 +5,7 @@ import logo from "../assets/logo.webp";
 const footerLinks = [
   { name: "Accueil", path: "/" },
   { name: "Services", path: "/services" },
+  { name: "Réalisations", path: "/realisations" },
   { name: "Présentation", path: "/presentation" },
   { name: "Contact", path: "/contact" },
 ];

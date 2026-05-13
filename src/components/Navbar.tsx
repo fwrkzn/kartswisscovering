@@ -27,6 +27,14 @@ export function Navbar() {
   const navLinks = [
     { name: "ACCUEIL", path: "/" },
     { name: "SERVICES", path: "/services" },
+    {
+      name: "REALISATIONS",
+      path: "/realisations",
+      subLinks: [
+        { name: "REALISATIONS 1", path: "/realisations" },
+        { name: "REALISATIONS 2", path: "/realisations2" },
+      ],
+    },
     { name: "PRÉSENTATION", path: "/presentation" },
     { name: "CONTACT", path: "/contact" },
   ];
@@ -76,17 +84,51 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className={`text-[11px] font-sans font-bold tracking-[0.2em] transition-all duration-300 hover:text-white ${
-                location.pathname === link.path ? "text-neon" : "text-neutral-400"
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            if (link.subLinks) {
+              return (
+                <div key={link.name} className="relative group py-2">
+                  <Link
+                    to={link.path}
+                    className={`text-[11px] font-sans font-bold tracking-[0.2em] transition-all duration-300 hover:text-white flex items-center gap-1 ${
+                      location.pathname.startsWith("/realisations") ? "text-neon" : "text-neutral-400"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                  {/* Dropdown Menu */}
+                  <div className="absolute top-full left-0 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50 min-w-[170px]">
+                    <div className="bg-dark/95 backdrop-blur-md border border-border p-2 shadow-xl flex flex-col gap-1">
+                      {link.subLinks.map((sub) => (
+                        <Link
+                          key={sub.name}
+                          to={sub.path}
+                          className={`text-[10px] font-sans font-bold tracking-[0.15em] px-3 py-2.5 uppercase transition-all block ${
+                            location.pathname === sub.path
+                              ? "text-neon bg-surface font-black"
+                              : "text-neutral-400 hover:text-white hover:bg-surface/50"
+                          }`}
+                        >
+                          {sub.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+            return (
+              <Link
+                key={link.name}
+                to={link.path}
+                className={`text-[11px] font-sans font-bold tracking-[0.2em] transition-all duration-300 hover:text-white ${
+                  location.pathname === link.path ? "text-neon" : "text-neutral-400"
+                }`}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Desktop CTA */}
@@ -118,24 +160,58 @@ export function Navbar() {
 
             <div className="flex flex-col gap-6 sm:gap-8 relative z-10 mt-auto">
               {navLinks.map((link, index) => (
-                <motion.div key={link.name} variants={linkVariants}>
-                  <Link
-                    to={link.path}
-                    onClick={() => setIsOpen(false)}
-                    className={`group flex items-center justify-between py-2 border-b border-white/5`}
-                  >
-                    <div className="flex items-center gap-4 sm:gap-6">
-                      <span className="text-neon font-display font-bold text-lg sm:text-xl opacity-40">0{index + 1}</span>
-                      <span className={`text-4xl sm:text-5xl md:text-7xl font-display font-bold uppercase transition-colors ${
-                        location.pathname === link.path ? "text-neon" : "text-white group-hover:text-neon"
-                      }`}>
-                        {link.name}
-                      </span>
-                    </div>
-                    <ArrowRight className={`w-6 h-6 sm:w-8 sm:h-8 transition-transform duration-500 group-hover:translate-x-2 ${
-                      location.pathname === link.path ? "text-neon" : "text-white/20"
-                    }`} />
-                  </Link>
+                <motion.div key={link.name} variants={linkVariants} className="flex flex-col">
+                  {link.subLinks ? (
+                    <>
+                      <div className="py-2 border-b border-white/5 flex items-center justify-between">
+                        <div className="flex items-center gap-4 sm:gap-6">
+                          <span className="text-neon font-display font-bold text-lg sm:text-xl opacity-40">0{index + 1}</span>
+                          <span className={`text-4xl sm:text-5xl md:text-7xl font-display font-bold uppercase ${
+                            location.pathname.startsWith("/realisations") ? "text-neon" : "text-white"
+                          }`}>
+                            {link.name}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col pl-12 sm:pl-16 mt-2 gap-3 border-b border-white/5 pb-3">
+                        {link.subLinks.map((sub) => (
+                          <Link
+                            key={sub.name}
+                            to={sub.path}
+                            onClick={() => setIsOpen(false)}
+                            className="group flex items-center justify-between py-1"
+                          >
+                            <span className={`text-xl sm:text-2xl font-display font-bold uppercase tracking-wide transition-colors ${
+                              location.pathname === sub.path ? "text-neon" : "text-neutral-400 group-hover:text-white"
+                            }`}>
+                              {sub.name}
+                            </span>
+                            <ArrowRight className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1 ${
+                              location.pathname === sub.path ? "text-neon" : "text-white/20"
+                            }`} />
+                          </Link>
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      onClick={() => setIsOpen(false)}
+                      className={`group flex items-center justify-between py-2 border-b border-white/5`}
+                    >
+                      <div className="flex items-center gap-4 sm:gap-6">
+                        <span className="text-neon font-display font-bold text-lg sm:text-xl opacity-40">0{index + 1}</span>
+                        <span className={`text-4xl sm:text-5xl md:text-7xl font-display font-bold uppercase transition-colors ${
+                          location.pathname === link.path ? "text-neon" : "text-white group-hover:text-neon"
+                        }`}>
+                          {link.name}
+                        </span>
+                      </div>
+                      <ArrowRight className={`w-6 h-6 sm:w-8 sm:h-8 transition-transform duration-500 group-hover:translate-x-2 ${
+                        location.pathname === link.path ? "text-neon" : "text-white/20"
+                      }`} />
+                    </Link>
+                  )}
                 </motion.div>
               ))}
             </div>
